@@ -1,0 +1,24 @@
+import pandas as pd
+
+url = "https://archive.ics.uci.edu/ml/machine-learning-databases/autos/imports-85.data"
+
+# define the headers 
+headers = ["symboling", "nomarlized-losses","make", "fuel-type", "aspiration", "num-of-doors", "body-style", "drive-wheels", "engine-location", "wheel-base", "lenght", "width", "height", "curb-weight", "engine-type", "num-of-cylinders", "engine-size", "fuel-system", "bore", "stroke", "compression-ratio", "horsepower", "peak-rpm", "city-mpg", "highway-mpg", "price"] 
+df = pd.read_csv(url, header=None)
+df.columns = headers
+df.head(5)
+df.tail(5)
+df.describe(include = "all")
+df=df.replace('?', np.NaN)
+df=df.dropna(subset=["price"], axis=0)
+df.head(20)
+df.dtypes
+df.describe(include = "all")
+df[['length', 'compression-ratio']].describe()
+df.info
+df['price'].dtype
+bins = [5000, 15000, 30000]
+lables = ['Low', 'Medium', 'High']
+df['price_binned'] = pd.cut(df['price'], bins = bins, labels = labels, right = False)
+print(df)
+df['price']
